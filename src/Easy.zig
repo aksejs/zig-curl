@@ -230,6 +230,10 @@ pub fn setVerbose(self: Self, verbose: bool) !void {
     try checkCode(c.curl_easy_setopt(self.handle, c.CURLOPT_VERBOSE, verbose));
 }
 
+pub fn setSslVerifyPeer(self: Self, verify: bool) !void {
+    try checkCode(c.curl_easy_setopt(self.handle, c.CURLOPT_SSL_VERIFYPEER, verify));
+}
+
 pub fn setPostFields(self: Self, body: []const u8) !void {
     try checkCode(c.curl_easy_setopt(self.handle, c.CURLOPT_POSTFIELDS, body.ptr));
     try checkCode(c.curl_easy_setopt(self.handle, c.CURLOPT_POSTFIELDSIZE, body.len));
